@@ -27,7 +27,9 @@ var detectNetwork = function(cardNumber) {
 
 //Visa
  var visaCardNumberLengths = [13, 16, 19];
-  if (cardNumber[0] === '4' && visaCardNumberLengths.includes(cardNumber.length)){
+ var nonVisaCardPrefix = ['4903', '4905', '4911', '4936']
+  if (cardNumber[0] === '4' && visaCardNumberLengths.includes(cardNumber.length) &&
+   !nonVisaCardPrefix.includes(cardNumber.slice(0, 4))){
     return 'Visa';
   }
 
@@ -65,17 +67,32 @@ cUnionPrefix = cUnionPayPrefix.concat(['624', '625', '626', '6282','6283','6284'
 
 if (cUnionPayCardNumLength.includes(cardNumber.length) && 
   cUnionPayPrefix.includes(cardNumber.slice(0, 6))){
-    return "China UnionPay";
+    return 'China UnionPay';
 }
 
 if (cUnionPayCardNumLength.includes(cardNumber.length) && 
   cUnionPayPrefix.includes(cardNumber.slice(0, 3))){
-    return "China UnionPay";
+    return 'China UnionPay';
 }
 
 if (cUnionPayCardNumLength.includes(cardNumber.length) && 
   cUnionPayPrefix.includes(cardNumber.slice(0, 4))){
-    return "China UnionPay";
+    return 'China UnionPay';
 }
 
+//Switch
+var switchPrefix = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '675'];
+var switchCardNumberLength = [16, 18, 19];
+if (switchCardNumLength.includes(cardNumber.length) && 
+  switchPrefix.includes(cardNumber.slice(0, 6))){
+    return 'Switch';
+}
+if (switchCardNumLength.includes(cardNumber.length) && 
+  switchPrefix.includes(cardNumber.slice(0, 4))){
+    return 'Switch';
+}
+if (switchCardNumLength.includes(cardNumber.length) && 
+  switchPrefix.includes(cardNumber.slice(0, 3))){
+    return 'Switch';
+}
 }
