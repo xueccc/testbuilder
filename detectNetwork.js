@@ -30,6 +30,7 @@ var detectNetwork = function(cardNumber) {
   if (cardNumber[0] === '4' && visaCardNumberLengths.includes(cardNumber.length)){
     return 'Visa';
   }
+
 //MasterCard
  var MasterCardPrefix = ['51', '52', '53', '54', '55'];
   if (MasterCardPrefix.includes(cardNumber.slice(0,2)) && cardNumber.length === 16){
@@ -37,17 +38,44 @@ var detectNetwork = function(cardNumber) {
   }
 
 //Discover  
-  var discoverCardNumberLengths = ['16', '19'];
+  var discoverCardNumberLengths = [16, 19];
   var discoverPrefix3Digits = ['6011','644', '645', '646', '647', '648', '649', '65'];
   if (discoverCardNumberLengths.includes(cardNumber.length) && 
   (discoverPrefix3Digits.includes(cardNumber.slice(0,3)) || cardNumber.slice(0, 4) === '6011' || cardNumber.slice(0,2) === '65')){
-    return 'Discover'
+    return 'Discover';
   }
 
- //Maestro
-  var maestroNumberLength = ['12', '13', '14', '15', '16', '17', '18', '19'];
+ //Maestro 
+  var maestroNumberLength = [12, 13, 14, 15, 16, 17, 18, 19];
   var maestroPrefix = ['5018', '5020', '5038', '6304'];
-  if (maestroNumberLength.includes(cardNumber.length && maestroPrefix.includes(cardNumber.slice(0, 4)))) {
+  if (maestroNumberLength.includes(cardNumber.length) && maestroPrefix.includes(cardNumber.slice(0, 4))) {
    return 'Maestro';
   }
+
+//China UnionPay
+var cUnionPayCardNumLength = [16, 17, 18, 19];
+var cUnionPayPrefix = []; 
+  (function(prefix){
+    for (var p = 622126; p <= 622925; p++){
+      cUnionPayPrefix.push(String(p));
+    }
+  }()
+  );
+cUnionPrefix = cUnionPayPrefix.concat(['624', '625', '626', '6282','6283','6284','6285', '6286', '6287', '6288']);
+
+if (cUnionPayCardNumLength.includes(cardNumber.length) && 
+  cUnionPayPrefix.includes(cardNumber.slice(0, 6))){
+    return "China UnionPay";
+}
+
+if (cUnionPayCardNumLength.includes(cardNumber.length) && 
+  cUnionPayPrefix.includes(cardNumber.slice(0, 3))){
+    return "China UnionPay";
+}
+
+if (cUnionPayCardNumLength.includes(cardNumber.length) && 
+  cUnionPayPrefix.includes(cardNumber.slice(0, 4))){
+    return "China UnionPay";
+}
+
 }
