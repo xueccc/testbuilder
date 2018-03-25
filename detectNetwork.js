@@ -63,7 +63,7 @@ var cUnionPayPrefix = [];
     }
   }()
   );
-cUnionPrefix = cUnionPayPrefix.concat(['624', '625', '626', '6282','6283','6284','6285', '6286', '6287', '6288']);
+cUnionPayPrefix = cUnionPayPrefix.concat(['624', '625', '626', '6282','6283','6284','6285', '6286', '6287', '6288']);
 
 if (cUnionPayCardNumLength.includes(cardNumber.length) && 
   cUnionPayPrefix.includes(cardNumber.slice(0, 6))){
@@ -83,15 +83,15 @@ if (cUnionPayCardNumLength.includes(cardNumber.length) &&
 //Switch
 var switchPrefix = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '675'];
 var switchCardNumberLength = [16, 18, 19];
-if (switchCardNumLength.includes(cardNumber.length) && 
+if (switchCardNumberLength.includes(cardNumber.length) && 
   switchPrefix.includes(cardNumber.slice(0, 6))){
     return 'Switch';
 }
-if (switchCardNumLength.includes(cardNumber.length) && 
+if (switchCardNumberLength.includes(cardNumber.length) && 
   switchPrefix.includes(cardNumber.slice(0, 4))){
     return 'Switch';
 }
-if (switchCardNumLength.includes(cardNumber.length) && 
+if (switchCardNumberLength.includes(cardNumber.length) && 
   switchPrefix.includes(cardNumber.slice(0, 3))){
     return 'Switch';
 }
